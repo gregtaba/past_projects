@@ -35,97 +35,98 @@
 ---
 Εντολές εκκίνησης και τερματισμού
 ---
-> <kbd>docker compose up -d</kbd> (τρεχει το docker-compose και δημιουργει τον container)
+> docker compose up -d (τρεχει το docker-compose και δημιουργει τον container)
 
-> <kbd>docker exec -it mysql-server mysql -u root -p</kbd> (με αυτην την εντολη μπαινεις στο mySQL-Client οπου μπορεις να τρεξεις sql queries ,επίσης σου ζητειται κωδικος ,σε αυτην την περιπτωση yourpassword)
+> docker exec -it mysql-server mysql -u root -p (με αυτην την εντολη μπαινεις στο mySQL-Client οπου μπορεις να τρεξεις sql queries ,επίσης σου ζητειται κωδικος ,σε αυτην την περιπτωση yourpassword)
 
-> <kbd>docker exec -it mysql-server bash</kbd> (με αυτην την εντολη μπαινεςι μεσα στο shell του container οπου τρεχεις εντολες όπως ls)
+> docker exec -it mysql-server bash (με αυτην την εντολη μπαινεςι μεσα στο shell του container οπου τρεχεις εντολες όπως ls)
 
-> <kbd>docker compose down</kbd> (για να τερματίσεις το container)
+> docker compose down (για να τερματίσεις το container)
 ---
 Βασικες Εντολές μεσα στο mySQL-Client
 ---
-> <kbd>CREATE DATABASE test_db;</kbd> (Δημιουργεί ένα databse με ονομα test_db)
+> CREATE DATABASE test_db; (Δημιουργεί ένα databse με ονομα test_db)
 
-> <kbd>SHOW DATABASES;</kbd> σου δειχνει όλα τα databases που εχεις(καποια υπάρχουν από πριν)
+> SHOW DATABASES; σου δειχνει όλα τα databases που εχεις(καποια υπάρχουν από πριν)
 
-> <kbd>DROP DATABASE test_db;</kbd> (διαγραφη βαση δεδομενων test_db)
+> DROP DATABASE test_db; (διαγραφη βαση δεδομενων test_db)
 
-> <kbd>use test_db;</kbd> (χρησιμοποιεις απο δω και περα το database test_db)
+> use test_db; (χρησιμοποιεις απο δω και περα το database test_db)
 
 ###### ολες οι εντολες όταν εισαι μεσα mySQL-Client πρεπει να τελιωνουν με ; αλλιως το mySQL-Client νομιζει ότι δεν εχεις τελιωσει την εντολη.
 ---
 ## Εκτέλεση queries μαζι με την δημιουργία του container
 
-> <kbd>το docker-compose αρχειο όταν δημιουργήσει τον container για πρώτη φορά θα τρέξει όλα τα queries που βρίσκονται στον φάκελο scripts (πρεπει να βρισκεται στο ιδιο directory με το docker-compose).Αυτά τα queries θα είναι διαθέσιμα από δω και πέρα επίσης μεσα στον φάκελο docker-entrypoint-initdb.d μέσα στο container mysql-server)</kbd>
+> το docker-compose αρχειο όταν δημιουργήσει τον container για πρώτη φορά θα τρέξει όλα τα queries που βρίσκονται στον φάκελο scripts (πρεπει να βρισκεται στο ιδιο directory με το docker-compose).Αυτά τα queries θα είναι διαθέσιμα από δω και πέρα επίσης μεσα στον φάκελο docker-entrypoint-initdb.d μέσα στο container mysql-server)
 
 
 ---
 Τρέξιμο ενός SQL Script από το MySQL Shell
 ---
-> <kbd>docker cp <path_to_programme> mysql-server:/<name_of_script></kbd> (αυτή η εντολη γινεται εκτος container και αντιγραφει το script που εχεις φτιαξει μεσα στο container σου σε αυτην την περιπτωση mysql-server)
+> docker cp <path_to_programme> mysql-server:/<name_of_script> (αυτή η εντολη γινεται εκτος container και αντιγραφει το script που εχεις φτιαξει μεσα στο container σου σε αυτην την περιπτωση mysql-server)
 
-> <kbd>SOURCE /<name_of_script>; </kbd>(αυτή η εντολη γινεται εντος container και τρεχει το script που μολις αντιγραφηκε μεσα στο Mysql-server container) 
+> SOURCE /<name_of_script>; (αυτή η εντολη γινεται εντος container και τρεχει το script που μολις αντιγραφηκε μεσα στο Mysql-server container) 
 
 ---
 Backup μιας MySQL Βάσης 
 ---
 > (Η παρακάτω εντολή πρεπει να τρεξει μεσα στο Shell του container για να λειτουργησει)
 > 
-> <kbd>mysqldump -u username -p database_name > backup.sql</kbd>
+> mysqldump -u username -p database_name > backup.sql
 > 
 > Αν το όνομα της βάσης είναι test_db και ο χρήστης root:
 > 
-> <kbd>mysqldump -u root -p test_db > backup.sql</kbd>
+> mysqldump -u root -p test_db > backup.sql
 > 
-> <kbd>Θα σου ζητηθεί ο κωδικός χρήστη(yourpassword). </kbd>
+> Θα σου ζητηθεί ο κωδικός χρήστη(yourpassword). 
 >   
 >   Μετά από αυτό, το αρχείο backup.sql θα περιέχει όλα τα δεδομένα και τη δομή της βάσης.
 ---
 Restore μιας Βασης
 ---
-``` 
+ 
 Ένας Τρόπος για να τσεκάρεις αν εχει παρει τα δεδομενα της βασης δεδομενων (test_db) το αρχείο backup.sql ειναι να κανεις restore την βαση και να τσεκαρεις τα δεδομενα με τις παρακάτω εντολες.
+```  
+CREATE DATABASE test_db_restore;(απο mysqlclient)
  
- <kbd>CREATE DATABASE test_db_restore;</kbd> (απο mysqlclient)
+mysql -u root -p test_db_restore < backup.sql (απο shell)
  
- <kbd>mysql -u root -p test_db_restore < backup.sql</kbd> (απο shell)
+USE test_db_restore; (απο mysqlclient)
  
-<kbd> USE test_db_restore;</kbd> (απο mysqlclient)
- 
- <kbd>SELECT * FROM users;</kbd> (απο mysqlclient)
+ELECT * FROM users; (απο mysqlclient)
 ``` 
  Αν εμφανιστούν τα δεδομένα που είχες στην αρχική βάση τότε το backup ήταν επιτυχές.
  
  Για backup όλων των βάσεων στον server χρησιμοποιεις αυτην την εντολη.
- <kbd>mysqldump -u root -p --all-databases > all_databases_backup.sql</kbd>
+ ``` mysqldump -u root -p --all-databases > all_databases_backup.sql ``` 
  
  Και για να επαναφερεις ολες τις βάσεις χρησιμοποιεις την εντολη
- <kbd>mysql -u root -p < all_databases_backup.sql</kbd>
+ ```  mysql -u root -p < all_databases_backup.sql ``` 
  (θα δώσει τα ίδια ονοματα στις βασεις που θα δημιουργησει με εκεινη που ειχαν οταν εγινε το backup)
  
  Αν θέλεις να πάρεις backup μόνο τη δομή (χωρίς δεδομένα) χρησιμοποιείς την εξής εντολή:
- <kbd>mysqldump -u root -p --no-data test_db > structure_backup.sql</kbd>
+ ``` mysqldump -u root -p --no-data test_db > structure_backup.sql ``` 
 ---
 Τεστάρισμα του volume
 ---
-> Χάρη στο docker-compose ολα τα δεδομένα που θα δημιουργήσεις παραμένουν ακόμα και αν κλείσεις τον container σου μεσα στο volume mysql_data.Ενας απλο τρόπος για να το τσεκάρεις ειναι να κανεις τις εξης εντολές.
-> 
-><kbd> docker-compose up -d</kbd> (από local machine)
-> 
-> <kbd>docker exec -it mysql-server mysql -u root -p</kbd> (ζηταει κωδικο)
-> 
-> <kbd>CREATE DATABASE test_trial_db;</kbd>(από mysql_client)
-> 
-> <kbd>docker-compose down</kbd> (από local machine)
-> 
-> <kbd>docker-compose up</kbd> (από local machine)
-> 
-> <kbd>docker exec -it mysql-server mysql -u root -p</kbd> (ζηταει κωδικο)
-> 
-> <kbd>show DATABASES;</kbd> (από mysql_client)
-> 
-> Αν σου εμφανιστεί μεσα στα databases και test_trial_db αυτό σημαίνει ότι το volume αποθηκεύει επιτυχώς τα στοιχεία της βασης δεδομένων σου ακομα και αν κλείσεις το container που χρησιμοποιείς.
+Χάρη στο docker-compose ολα τα δεδομένα που θα δημιουργήσεις παραμένουν ακόμα και αν κλείσεις τον container σου μεσα στο volume mysql_data.Ενας απλο τρόπος για να το τσεκάρεις ειναι να κανεις τις εξης εντολές.
+``` 
+docker-compose up -d (από local machine)
+
+docker exec -it mysql-server mysql -u root -p (ζηταει κωδικο)
+
+CREATE DATABASE test_trial_db;(από mysql_client)
+ 
+docker-compose down (από local machine)
+
+docker-compose up (από local machine)
+ 
+docker exec -it mysql-server mysql -u root -p (ζηταει κωδικο)
+ 
+show DATABASES; (από mysql_client)
+```  
+ 
+Αν σου εμφανιστεί μεσα στα databases και test_trial_db αυτό σημαίνει ότι το volume αποθηκεύει επιτυχώς τα στοιχεία της βασης δεδομένων σου ακομα και αν κλείσεις το container που χρησιμοποιείς.
 ---
 ##   ΠΑΡΑΔΕΙΓΜΑ ΧΡΗΣΗΣ SQL
   ---
@@ -147,32 +148,32 @@ Restore μιας Βασης
   
 #####   alter_table.sql
   
-> 
-> ALTER TABLE employees_info ADD COLUMN date_started_working DATE;
-> 
-> UPDATE employees_info
-> SET date_started_working = DATE_ADD('2010-01-01', INTERVAL (RAND() * 3650) DAY);
-> 
-> 
-> 
+```  
+ALTER TABLE employees_info ADD COLUMN date_started_working DATE;
+
+UPDATE employees_info
+SET date_started_working = DATE_ADD('2010-01-01', INTERVAL (RAND() * 3650) DAY);
+```  
   
   
   
   Στην συνέχεια μέσα στο φάκελο scripts θα βάλετε μέσα αυτό το sql script. 
   
 #####   create.sql
-  
-> CREATE DATABASE IF NOT EXISTS company_data;
-> 
-> USE company_data;
-> 
-> CREATE TABLE IF NOT EXISTS employees_info (
->     id INT AUTO_INCREMENT PRIMARY KEY,
->     name VARCHAR(100),
->     surname VARCHAR(100),
->     gender VARCHAR(10),
->     position VARCHAR(100)
-> );
+```  
+ CREATE DATABASE IF NOT EXISTS company_data;
+ 
+ USE company_data;
+ 
+ CREATE TABLE IF NOT EXISTS employees_info (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     name VARCHAR(100),
+     surname VARCHAR(100),
+     gender VARCHAR(10),
+     position VARCHAR(100)
+ );
+
+```  
   ---
   
 #####   Μόλις τελιώσουν αυτά τα βήματα είμαστε έτοιμοι να τρέξουμε το πρόγραμμα.
