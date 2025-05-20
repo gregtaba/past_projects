@@ -200,23 +200,22 @@ SET date_started_working = DATE_ADD('2010-01-01', INTERVAL (RAND() * 3650) DAY);
 > 	SOURCE /insert.sql;
 
 Μετά από αυτην την εντολη το table μας πρεπει να έχει 10 καινούργια στοιχεία ,αν τρέξουμε τώρα select * from employees_info; μέσα στον mysql_client θα πρέπει να μας εμφανιστεί αυτό.
->   
->   +----+----------+----------+--------+----------------------+
-> | id | name     | surname  | gender | position             |
-> +----+----------+----------+--------+----------------------+
-> |  1 | John     | Doe      | Male   | Software Engineer    |
-> |  2 | Jane     | Smith    | Female | HR Manager           |
-> |  3 | Mark     | Johnson  | Male   | Product Manager      |
-> |  4 | Emily    | Brown    | Female | Designer             |
-> |  5 | Michael  | Davis    | Male   | Sales Representative |
-> |  6 | Sarah    | Wilson   | Female | Marketing Specialist |
-> |  7 | David    | Martinez | Male   | Accountant           |
-> |  8 | Linda    | Garcia   | Female | Customer Support     |
-> |  9 | James    | Taylor   | Male   | Developer            |
-> | 10 | Patricia | Anderson | Female | Operations Manager   |
-> +----+----------+----------+--------+----------------------+
->   
->   
+ ```    
+   +----+----------+----------+--------+----------------------+
+ | id | name     | surname  | gender | position             |
+ +----+----------+----------+--------+----------------------+
+ |  1 | John     | Doe      | Male   | Software Engineer    |
+ |  2 | Jane     | Smith    | Female | HR Manager           |
+ |  3 | Mark     | Johnson  | Male   | Product Manager      |
+ |  4 | Emily    | Brown    | Female | Designer             |
+ |  5 | Michael  | Davis    | Male   | Sales Representative |
+ |  6 | Sarah    | Wilson   | Female | Marketing Specialist |
+ |  7 | David    | Martinez | Male   | Accountant           |
+ |  8 | Linda    | Garcia   | Female | Customer Support     |
+ |  9 | James    | Taylor   | Male   | Developer            |
+ | 10 | Patricia | Anderson | Female | Operations Manager   |
+ +----+----------+----------+--------+----------------------+
+ ```  
   
 
 
