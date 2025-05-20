@@ -59,7 +59,7 @@
 ## Εκτέλεση queries μαζι με την δημιουργία του container
 
 > <kbd>το docker-compose αρχειο όταν δημιουργήσει τον container για πρώτη φορά θα τρέξει όλα τα queries που βρίσκονται στον φάκελο scripts (πρεπει να βρισκεται στο ιδιο directory με το docker-compose).Αυτά τα queries θα είναι διαθέσιμα από δω και πέρα επίσης μεσα στον φάκελο docker-entrypoint-initdb.d μέσα στο container mysql-server)</kbd>
-{.is-info}
+
 
 ---
 Τρέξιμο ενός SQL Script από το MySQL Shell
