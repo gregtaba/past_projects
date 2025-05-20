@@ -8,30 +8,29 @@
 
 ---
 
-
-> version: '3.8'
->   
-> services:
->    db:
->     image: mysql:5.7
->     container_name: mysql-server
->     restart: always
->     environment:
->       MYSQL_ROOT_PASSWORD: yourpassword
->       MYSQL_DATABASE: test_db
->       MYSQL_USER: user
->       MYSQL_PASSWORD: password
->     ports:
->       - "3306:3306"
->     volumes:
->       - mysql_data:/var/lib/mysql # Αποθηκεύει τα δεδομένα της βάσης στο volume
->       - ./scripts:/docker-entrypoint-initdb.d # Βάζει SQL scripts για αρχικοποίηση
-> 
-> volumes:
->   mysql_data:
->     driver: local
-> 
-
+``` 
+ version: '3.8'
+   
+ services:
+    db:
+     image: mysql:5.7
+     container_name: mysql-server
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: yourpassword
+       MYSQL_DATABASE: test_db
+       MYSQL_USER: user
+       MYSQL_PASSWORD: password
+     ports:
+       - "3306:3306"
+     volumes:
+       - mysql_data:/var/lib/mysql # Αποθηκεύει τα δεδομένα της βάσης στο volume
+       - ./scripts:/docker-entrypoint-initdb.d # Βάζει SQL scripts για αρχικοποίηση
+ 
+ volumes:
+   mysql_data:
+     driver: local 
+``` 
 ---
 ---
 Εντολές εκκίνησης και τερματισμού
