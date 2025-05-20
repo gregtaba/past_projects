@@ -1,0 +1,1 @@
+In the files below i provide detailed documentation for Sonarlint (a powerful, open-source IDE extension that helps developers detect and fix quality issues in their code as they write it) as well as some basic documentation for Sonarqube.
