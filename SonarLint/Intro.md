@@ -71,11 +71,7 @@ In order to connect to a SonarQube Server you will first need to create a token 
 After you create your token you are ready to establish a connection with a SonarQube Server.Fllow these steps
 
 * Open VS CODE
-* Locate and press the **SonarQube** button to your right in the Taskbar. This is what it looks like
-
-<br/>
-
-<img src="/sonarlint.png" alt="SonarLint" width="100">
+* Locate and press the **SonarQube** button to your right in the Taskbar. 
 
 * Under **Connected Mode** Press the button **add Sonarqube Server Connection**
 * Under server URL put the url where your server is running.
