@@ -84,27 +84,28 @@ Backup μιας MySQL Βάσης
 ---
 Restore μιας Βασης
 ---
->  Ένας Τρόπος για να τσεκάρεις αν εχει παρει τα δεδομενα της βασης δεδομενων (test_db) το αρχείο backup.sql ειναι να κανεις restore την βαση και να τσεκαρεις τα δεδομενα με τις παρακάτω εντολες.
-> 
-> <kbd>CREATE DATABASE test_db_restore;</kbd> (απο mysqlclient)
-> 
-> <kbd>mysql -u root -p test_db_restore < backup.sql</kbd> (απο shell)
-> 
-><kbd> USE test_db_restore;</kbd> (απο mysqlclient)
-> 
-> <kbd>SELECT * FROM users;</kbd> (απο mysqlclient)
->
-> Αν εμφανιστούν τα δεδομένα που είχες στην αρχική βάση τότε το backup ήταν επιτυχές.
-> 
-> Για backup όλων των βάσεων στον server χρησιμοποιεις αυτην την εντολη.
-> <kbd>mysqldump -u root -p --all-databases > all_databases_backup.sql</kbd>
-> 
-> Και για να επαναφερεις ολες τις βάσεις χρησιμοποιεις την εντολη
-> <kbd>mysql -u root -p < all_databases_backup.sql</kbd>
-> (θα δώσει τα ίδια ονοματα στις βασεις που θα δημιουργησει με εκεινη που ειχαν οταν εγινε το backup)
-> 
-> Αν θέλεις να πάρεις backup μόνο τη δομή (χωρίς δεδομένα) χρησιμοποιείς την εξής εντολή:
-> <kbd>mysqldump -u root -p --no-data test_db > structure_backup.sql</kbd>
+``` 
+Ένας Τρόπος για να τσεκάρεις αν εχει παρει τα δεδομενα της βασης δεδομενων (test_db) το αρχείο backup.sql ειναι να κανεις restore την βαση και να τσεκαρεις τα δεδομενα με τις παρακάτω εντολες.
+ 
+ <kbd>CREATE DATABASE test_db_restore;</kbd> (απο mysqlclient)
+ 
+ <kbd>mysql -u root -p test_db_restore < backup.sql</kbd> (απο shell)
+ 
+<kbd> USE test_db_restore;</kbd> (απο mysqlclient)
+ 
+ <kbd>SELECT * FROM users;</kbd> (απο mysqlclient)
+``` 
+ Αν εμφανιστούν τα δεδομένα που είχες στην αρχική βάση τότε το backup ήταν επιτυχές.
+ 
+ Για backup όλων των βάσεων στον server χρησιμοποιεις αυτην την εντολη.
+ <kbd>mysqldump -u root -p --all-databases > all_databases_backup.sql</kbd>
+ 
+ Και για να επαναφερεις ολες τις βάσεις χρησιμοποιεις την εντολη
+ <kbd>mysql -u root -p < all_databases_backup.sql</kbd>
+ (θα δώσει τα ίδια ονοματα στις βασεις που θα δημιουργησει με εκεινη που ειχαν οταν εγινε το backup)
+ 
+ Αν θέλεις να πάρεις backup μόνο τη δομή (χωρίς δεδομένα) χρησιμοποιείς την εξής εντολή:
+ <kbd>mysqldump -u root -p --no-data test_db > structure_backup.sql</kbd>
 ---
 Τεστάρισμα του volume
 ---
